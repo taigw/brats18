@@ -1,0 +1,15 @@
+[data]
+data_dir_list            = [/Users/guotaiwang/Documents/data/BRATS2017/Brats17TrainingData]
+entry_names_file         = config/train_names_part.txt 
+shuffle                  = True
+entry_data_fields        = [feature, prediction]
+
+# for feature
+feature_channel_names    = [flair, t1, t1ce, t2]
+feature_data_type        = float32
+
+# for prediction
+prediction_channel_names = [seg]
+prediction_data_type     = int32
+
+output_tfrecord_name     = data/Brats17Training.tfrecord
