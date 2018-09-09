@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import tensorflow as tf
 import numpy as np
-from preprocess.base_layer import Layer
+from util.preprocess.base_layer import Layer
 class ForegroundMaskLayer(Layer):
     def __init__(self, name = 'foreground_mask', inversible = False):
         self.name = name

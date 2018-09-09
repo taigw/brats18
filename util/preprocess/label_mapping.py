@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import tensorflow as tf
-from preprocess.base_layer import Layer
+from util.preprocess.base_layer import Layer
 
 class LabelMappingLayer(Layer):
     def __init__(self, name = 'label_mapping', inversible = False):

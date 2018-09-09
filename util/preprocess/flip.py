@@ -2,7 +2,7 @@
 import tensorflow as tf
 import numpy as np
 import random
-from preprocess.base_layer import Layer
+from util.preprocess.base_layer import Layer
 class FlipLayer(Layer):
     def __init__(self, name = 'flip', inversible = False):
         self.name = name

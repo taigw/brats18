@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import tensorflow as tf
-from preprocess.base_layer import Layer
+from util.preprocess.base_layer import Layer
 
 
 def extract_ndarray_subregion(input_array, begin, size):
