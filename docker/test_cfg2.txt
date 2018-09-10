@@ -13,9 +13,10 @@ prediction_data_type     =
 
 # for preprocessing
 crop_size           = [144, 172, 144]
-flip_axes           = 
-flip_mode           = 
-save_folder         = /data/results
+flip_axes           = [0]
+flip_mode           = constant
+rotate_angle_range  = [-30, 30]
+save_folder         = /data/results2
 
 [network1ax]
 net_type            = MSNet

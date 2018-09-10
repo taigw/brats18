@@ -1,0 +1,104 @@
+[data]
+data_dir_list     = [/data]
+entry_names_file  = /data/brats18/docker/test_names.txt
+entry_data_fields = [feature]
+
+# for feature
+feature_channel_names    = [flair, t1, t1ce, t2]
+feature_data_type        = float32
+
+# prediction
+prediction_channel_names = 
+prediction_data_type     = 
+
+# for preprocessing
+crop_size           = [144, 172, 144]
+flip_axes           = [0,1,2]
+flip_mode           = constant
+rotate_angle_range  = [-30, 30]
+save_folder         = /data/results5
+
+[network1ax]
+net_type            = MSNet
+net_name            = MSNet_WT32
+downsample_twice    = True
+data_shape          = [19, 172, 144, 4]
+label_shape         = [11, 172, 144, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_wt32_20000.ckpt
+
+[network1sg]
+net_type            = MSNet
+net_name            = MSNet_WT32sg
+downsample_twice    = True
+data_shape          = [19, 144, 172, 4]
+label_shape         = [11, 144, 172, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_wt32sg_20000.ckpt
+
+[network1cr]
+net_type            = MSNet
+net_name            = MSNet_WT32cr
+downsample_twice    = True
+data_shape          = [19, 144, 144, 4]
+label_shape         = [11, 144, 144, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_wt32cr_20000.ckpt
+
+
+[network2ax]
+net_type            = MSNet
+net_name            = MSNet_TC32
+downsample_twice    = True
+data_shape          = [19, 96, 96, 4]
+label_shape         = [11, 96, 96, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_tc32_20000.ckpt
+
+[network2sg]
+net_type            = MSNet
+net_name            = MSNet_TC32sg
+downsample_twice    = True
+data_shape          = [19, 96, 96, 4]
+label_shape         = [11, 96, 96, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_tc32sg_20000.ckpt
+
+[network2cr]
+net_type            = MSNet
+net_name            = MSNet_TC32cr
+downsample_twice    = True
+data_shape          = [19, 96, 96, 4]
+label_shape         = [11, 96, 96, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_tc32cr_20000.ckpt
+
+[network3ax]
+net_type            = MSNet
+net_name            = MSNet_EN32
+downsample_twice    = False
+data_shape          = [19, 64, 64, 4]
+label_shape         = [11, 64, 64, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_en32_20000.ckpt
+
+[network3sg]
+net_type            = MSNet
+net_name            = MSNet_EN32sg
+downsample_twice    = False
+data_shape          = [19, 64, 64, 4]
+label_shape         = [11, 64, 64, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_en32sg_20000.ckpt
+
+[network3cr]
+net_type            = MSNet
+net_name            = MSNet_EN32cr
+downsample_twice    = False
+data_shape          = [19, 64, 64, 4]
+label_shape         = [11, 64, 64, 1]
+class_num           = 2
+model_file          = /data/brats18/model17/msnet_en32cr_20000.ckpt
+
+[testing]
+batch_size = 5

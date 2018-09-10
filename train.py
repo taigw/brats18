@@ -24,7 +24,7 @@ from util.preprocess.intensity_normalize import IntensityNormalizeLayer
 from util.preprocess.foreground_mask import ForegroundMaskLayer
 from util.preprocess.crop_image import CropImageToFixedSizeLayer
 from util.preprocess.flip import FlipLayer
-from util.preprocess.rotate import Rotate
+from util.preprocess.rotate import RotateLayer
 from util.preprocess.transpose import TransposeLayer
 from util.preprocess.sample_mask import SampleMaskLayer
 from util.preprocess.label_mapping import LabelMappingLayer
