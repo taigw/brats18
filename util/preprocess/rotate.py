@@ -38,8 +38,8 @@ class RotateLayer(Layer):
         for field in input_dict['entry_data'].keys():
             temp_array = input_dict['entry_data'][field]
             interp_order = 1 if field == 'feature' else 0
-            rotate_array = ndimage.interpolation.rotate(temp_array, reshape = False,
-                             rotate_angle, axes = (2, 3), order =interp_order)
+            rotate_array = ndimage.interpolation.rotate(temp_array, rotate_angle, axes = (2, 3),
+                            reshape = False, order =interp_order)
             input_dict['entry_data'][field] = rotate_array
         return input_dict
 
@@ -48,8 +48,8 @@ class RotateLayer(Layer):
         for field in input_dict['entry_data'].keys():
             temp_array = input_dict['entry_data'][field]
             interp_order = 1 if field == 'feature' else 0
-            rotate_array = ndimage.interpolation.rotate(temp_array, reshape = False,
-                             rotate_angle, axes = (2, 3), order =interp_order)
+            rotate_array = ndimage.interpolation.rotate(temp_array, rotate_angle, axes = (2, 3),
+                            reshape = False, order =interp_order)
             input_dict['entry_data'][field] = rotate_array
         return input_dict
 
