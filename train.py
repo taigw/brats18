@@ -24,6 +24,7 @@ from util.preprocess.intensity_normalize import IntensityNormalizeLayer
 from util.preprocess.foreground_mask import ForegroundMaskLayer
 from util.preprocess.crop_image import CropImageToFixedSizeLayer
 from util.preprocess.flip import FlipLayer
+from util.preprocess.rotate import Rotate
 from util.preprocess.transpose import TransposeLayer
 from util.preprocess.sample_mask import SampleMaskLayer
 from util.preprocess.label_mapping import LabelMappingLayer
@@ -125,6 +126,12 @@ def get_brats_preprocess_layers(config_data, mode = tf.estimator.ModeKeys.TRAIN)
         transpose = TransposeLayer(transpose_view = transpose_view)
         pre_processor.append(transpose)
 
+    # rotate
+    rotate_angle_range = config_data.get('rotate_angle_range', None)
+    if (rotate_angle_range is not None):
+        rotate = RotateLayer()
+        rotate.set_angle_range(rotate_angle_range)
+        pre_processor.append(rotate)
     return pre_processor
 
 def train(config_file):
