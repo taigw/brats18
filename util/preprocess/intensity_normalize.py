@@ -10,7 +10,7 @@ class IntensityNormalizeLayer(Layer):
         self.channel_number = None
 
     def get_class_name(self):
-        return "CropImageToFixedSizeLayer"
+        return "IntensityNormalizeLayer"
     
     def set_channel_number(self, channel_number):
         self.channel_number = channel_number

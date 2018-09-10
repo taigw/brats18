@@ -197,6 +197,7 @@ class BratsTest:
                     input_dict = {'entry_name': name}
                     input_dict['entry_data'] = {'prediction': predict}
                     for layer_idx in list(reversed(range(len(pre_processor)))):
+                        print(pre_processor[layer_idx].get_class_name())
                         if(hasattr(pre_processor[layer_idx], 'inverse_np_operate')):
                             input_dict = pre_processor[layer_idx].inverse_np_operate(input_dict)
                     predict = input_dict['entry_data']['prediction']

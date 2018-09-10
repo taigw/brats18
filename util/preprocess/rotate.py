@@ -7,15 +7,15 @@ from util.preprocess.base_layer import Layer
 class RotateLayer(Layer):
     def __init__(self, name = 'rotate', inversible = False):
         self.name = name
-        super(FlipLayer, self).__init__(name = name)
+        super(RotateLayer, self).__init__(name = name)
         self.rotate_angle = 0
-        self.parameters = None
-
+        self.parameters = {}
+        
     def get_class_name(self):
         return "RotateLayer"
     
     def set_angle_range(self, angle_range):
-        self.angel_range = angle_range
+        self.angle_range = angle_range
     
     def tf_operate(self, input_dict):
         rotate_angle = tf.random_uniform([1], self.angle_range[0], self.angle_range[1])
@@ -34,21 +34,21 @@ class RotateLayer(Layer):
     
     def np_operate(self, input_dict):
         rotate_angle = random.uniform(self.angle_range[0], self.angle_range[1])
-        self.parametres[input_dict['entry_name']] = rotate_angle
+        self.parameters[input_dict['entry_name']] = rotate_angle
         for field in input_dict['entry_data'].keys():
             temp_array = input_dict['entry_data'][field]
             interp_order = 1 if field == 'feature' else 0
-            rotate_array = ndimage.interpolation.rotate(temp_array, rotate_angle, axes = (2, 3),
+            rotate_array = ndimage.interpolation.rotate(temp_array, rotate_angle, axes = (1, 2),
                             reshape = False, order =interp_order)
             input_dict['entry_data'][field] = rotate_array
         return input_dict
 
     def inverse_np_operate(self, input_dict):
-        rotate_angle = - self.parametres[input_dict['entry_name']]
+        rotate_angle = - self.parameters[input_dict['entry_name']]
         for field in input_dict['entry_data'].keys():
             temp_array = input_dict['entry_data'][field]
             interp_order = 1 if field == 'feature' else 0
-            rotate_array = ndimage.interpolation.rotate(temp_array, rotate_angle, axes = (2, 3),
+            rotate_array = ndimage.interpolation.rotate(temp_array, rotate_angle, axes = (1, 2),
                             reshape = False, order =interp_order)
             input_dict['entry_data'][field] = rotate_array
         return input_dict
