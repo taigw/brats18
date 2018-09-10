@@ -33,11 +33,7 @@ downsample_twice    = True
 data_shape          = [19, 144, 172, 4]
 label_shape         = [11, 144, 172, 1]
 class_num           = 2
-<<<<<<< HEAD
 model_file          = /data/brats18/model17/msnet_wt32sg_20000.ckpt
-=======
-model_file          = /data/brats18/model17_2/msnet_wt32sg_40000.ckpt
->>>>>>> d01c13fe2eac15dc571742ebce3f9552525e2d85
 
 [network1cr]
 net_type            = MSNet
@@ -83,11 +79,7 @@ downsample_twice    = False
 data_shape          = [19, 64, 64, 4]
 label_shape         = [11, 64, 64, 1]
 class_num           = 2
-<<<<<<< HEAD
 model_file          = /data/brats18/model17/msnet_en32_20000.ckpt
-=======
-model_file          = /data/brats18/model17_2/msnet_en32_40000.ckpt
->>>>>>> d01c13fe2eac15dc571742ebce3f9552525e2d85
 
 [network3sg]
 net_type            = MSNet
@@ -96,11 +88,7 @@ downsample_twice    = False
 data_shape          = [19, 64, 64, 4]
 label_shape         = [11, 64, 64, 1]
 class_num           = 2
-<<<<<<< HEAD
 model_file          = /data/brats18/model17/msnet_en32sg_20000.ckpt
-=======
-model_file          = /data/brats18/model17_2/msnet_en32sg_40000.ckpt
->>>>>>> d01c13fe2eac15dc571742ebce3f9552525e2d85
 
 [network3cr]
 net_type            = MSNet
@@ -109,11 +97,7 @@ downsample_twice    = False
 data_shape          = [19, 64, 64, 4]
 label_shape         = [11, 64, 64, 1]
 class_num           = 2
-<<<<<<< HEAD
 model_file          = /data/brats18/model17/msnet_en32cr_20000.ckpt
-=======
-model_file          = /data/brats18/model17_2/msnet_en32cr_40000.ckpt
->>>>>>> d01c13fe2eac15dc571742ebce3f9552525e2d85
 
 [testing]
 batch_size = 5
