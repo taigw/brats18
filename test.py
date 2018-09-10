@@ -178,6 +178,8 @@ class BratsTest:
         
         # start to test
         save_folder = config_data['save_folder']
+        if(not os.path.isdir(save_folder)):
+            os.mkdir(save_folder)
         test_time = []
         num = 0
         

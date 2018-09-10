@@ -1,0 +1,3 @@
+[data]
+input_folder_list  = [/data/results2, /data/results3, /data/results4, /data/results5]
+output_folder  = /data/result_vote
