@@ -217,7 +217,7 @@ class BratsTest:
         print("average test time: {0:}".format(test_time.mean()))
         np.savetxt(save_folder + "/test_time.txt", test_time)
         self.sess.close()
-        
+
 
 if __name__ == '__main__':
     if(len(sys.argv) != 2):

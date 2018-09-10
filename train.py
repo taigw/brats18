@@ -200,23 +200,6 @@ def train(config_file):
         saver.restore(sess, config_train['model_pre_trained'])
     loss_list, temp_loss_list = [], []
 
-#     for i in range(2):
-#         elem = sess.run(next_element)
-#         x = elem['entry_data']['feature']
-#         y = elem['entry_data']['prediction']
-#         w = elem['entry_data']['mask']
-#         print(x.mean(),x.min(), x.max(), x.shape, w.sum())
-#         x_sub = x[0, :, :, :, 0]
-#         img = sitk.GetImageFromArray(x_sub)
-#         sitk.WriteImage(img, 'util/py/temp.nii.gz')
-#         x_sub = w[0, :, :, :, 0]
-#         img = sitk.GetImageFromArray(x_sub)
-#         sitk.WriteImage(img, 'util/py/temp_mask.nii.gz')
-#         x_sub = y[0, :, :, :, 0]
-#         img = sitk.GetImageFromArray(x_sub)
-#         sitk.WriteImage(img, 'util/py/temp_seg.nii.gz')
-#     return
-
     margin = int((config_data['data_shape'][0]  - config_data['label_shape'][0])/2)
     for n in range(start_it, config_train['maximal_iteration']):
         try:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import tensorflow as tf
 import numpy as np
-from preprocess.base_layer import Layer
+from util.preprocess.base_layer import Layer
 class SampleMaskLayer(Layer):
     def __init__(self, name = 'sample_mask', inversible = False):
         self.name = name

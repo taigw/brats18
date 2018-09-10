@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import tensorflow as tf
 import numpy as np
-from preprocess.base_layer import Layer
+from util.preprocess.base_layer import Layer
 class TransposeLayer(Layer):
     def __init__(self, name = 'transpose_layer', inversible = False, transpose_view = None):
         super(TransposeLayer, self).__init__(name = name)
