@@ -112,6 +112,9 @@ def brats_post_process(seg):
     return new_seg
 
 def get_voted_result(input_folder_list, output_folder):
+    """
+    each folder in input_folder_list contains the segmenatation of all the images
+    """
     if(not os.path.isdir(output_folder)):
         os.mkdir(output_folder)
     patient_names = os.listdir(input_folder_list[0])
@@ -137,6 +140,42 @@ def get_voted_result(input_folder_list, output_folder):
                             img_obj.header, img_obj.extra, img_obj.file_map)
         save_filename = "{0:}/{1:}".format(output_folder, item)
         nibabel.save(output_img, save_filename)
+
+def get_voted_result_for_single_folder_multiple_predictions(result_root, result_under_patient_dir):
+    """
+    the root folder contain folders for all the patients, and each patient folder
+    contains multiple predictions of the same patient.
+    """
+    patient_names = os.listdir(result_root)
+    print(patient_names)
+    patient_names = [item for item in patient_names \
+        if ("Brats" in item and os.path.isdir("{0:}/{1:}".format(result_root,item)))]
+    for item in patient_names:
+        print(item)
+        seg_data = []
+        if(result_under_patient_dir):
+            result_folder = "{0:}/{1:}/results/tumor_tiggw_class".format(result_root, item)
+        else:
+            result_folder = "{0:}/{1:}".format(result_root, item)
+        seg_files = os.listdir(result_folder)
+        for seg_file in seg_files:
+            if("nii.gz" in seg_file):
+                full_seg_name = "{0:}/{1:}".format(result_folder, seg_file)
+                img_obj  = nibabel.load(full_seg_name)
+                img_data = img_obj.get_data()
+                seg_data.append(img_data)
+
+        seg_data = np.asarray(seg_data)
+        vote_data = stats.mode(seg_data, axis = 0)[0][0]
+
+        # post process
+        vote_data = brats_post_process(vote_data)
+        output_img = nibabel.nifti1.Nifti1Image(vote_data, img_obj.affine,
+                            img_obj.header, img_obj.extra, img_obj.file_map)
+
+        save_filename = "{0:}.nii.gz".format(result_folder)
+        nibabel.save(output_img, save_filename)
+
 
 if __name__ == "__main__":
     if(len(sys.argv) != 2):

@@ -1,3 +1,8 @@
 [data]
-input_folder_list  = [/data/results2, /data/results3, /data/results4, /data/results5]
-output_folder  = /data/result_vote
+result_root = /data
+
+# Set result_under_patient_dir  as True if the segmentation name is like
+# Brats17_XXXXX_XXX_1/results/tumor_tiggw_class/test1.nii.gz
+# otherwise set result_under_patient_dir as False, and the segmentation 
+# name is like Brats17_XXXXX_XXX_1/test1.nii.gz
+result_under_patient_dir = True

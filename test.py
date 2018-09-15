@@ -177,8 +177,9 @@ class BratsTest:
         self.sess.run(test_init_op)
         
         # start to test
-        save_folder = config_data['save_folder']
-        if(not os.path.isdir(save_folder)):
+        save_folder = config_data.get('save_folder', None)
+        multi_prediction_postfix = config_data.get('multi_prediction_postfix', None)
+        if(save_folder is not None and (not os.path.isdir(save_folder))):
             os.mkdir(save_folder)
         test_time = []
         num = 0
@@ -194,7 +195,8 @@ class BratsTest:
                     imgs    = [x[:, :, :, 0], x[:, :, :, 1], x[:, :, :, 2], x[:, :, :, 3]]
                     weight  =  mask[:, :, :, 0]
                     t0 = time.time()
-                    predict = self.__inference_one_case(imgs, weight)
+                    predict = np.ones_like(weight)
+#                    predict = self.__inference_one_case(imgs, weight)
                     predict = np.reshape(predict, list(predict.shape) + [1])
                     input_dict = {'entry_name': name}
                     input_dict['entry_data'] = {'prediction': predict}
@@ -207,8 +209,34 @@ class BratsTest:
                     time_i = time.time() - t0
                     test_time.append(time_i)
                     print("{0:} {1:}".format(name, time_i))
-                    save_name = name if '/' not in name else name.split('/')[-1]
-                    save_name = "{0:}/{1:}.nii.gz".format(save_folder, save_name)
+                    
+                    # save segmentation result
+                    patient_name = name if '/' not in name else name.split('/')[-1]
+                    if(save_folder is None):
+                        output_folder = os.path.join(config_data['data_dir_list'][0], patient_name)
+                        if(not os.path.isdir(output_folder)):
+                            os.mkdir(output_folder)
+                        output_folder = os.path.join(output_folder, 'results')
+                        if(not os.path.isdir(output_folder)):
+                            os.mkdir(output_folder)
+                        if(multi_prediction_postfix is None):
+                            save_name = "{0:}/tumor_tiggw_class.nii.gz".format(output_folder)
+                        else:
+                            output_folder = "{0:}/tumor_tiggw_class".format(output_folder)
+                            if(not os.path.isdir(output_folder)):
+                                os.mkdir(output_folder)
+                            save_name = "{0:}/{1:}.nii.gz".format(output_folder, multi_prediction_postfix)
+                    else:
+                        if(not os.path.isdir(save_folder)):
+                            os.mkdir(save_folder)
+                        if(multi_prediction_postfix is None):
+                            save_name = "{0:}/{1:}.nii.gz".format(save_folder, patient_name)
+                        else:
+                            output_folder = "{0:}/{1:}".format(save_folder, patient_name)
+                            if(not os.path.isdir(output_folder)):
+                                os.mkdir(output_folder)
+                            save_name = "{0:}/{1:}.nii.gz".format(output_folder, multi_prediction_postfix)
+
                     reference_name = "{0:}/{1:}_{2:}.nii.gz".format(config_data['data_dir_list'][0],
                                         name, config_data['feature_channel_names'][0])
                     save_array_as_nifty_volume(predict, save_name, reference_name)
@@ -218,7 +246,8 @@ class BratsTest:
         print("Finished {0:} images".format(num))
         test_time = np.asarray(test_time)
         print("average test time: {0:}".format(test_time.mean()))
-        np.savetxt(save_folder + "/test_time.txt", test_time)
+        if(save_folder is not None):
+            np.savetxt(save_folder + "/test_time.txt", test_time)
         self.sess.close()
 
 

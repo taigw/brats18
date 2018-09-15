@@ -13,10 +13,19 @@ prediction_data_type     =
 
 # for preprocessing
 crop_size           = [144, 172, 144]
-flip_axes           = [1]
+flip_axes           = [2]
 flip_mode           = constant
 rotate_angle_range  = [-30, 30]
-save_folder         = /data/results3
+
+# for output
+# If save_folder is empty, the segmentation of each image will be
+# saved in the same folder as the input, and the output name is
+# Brats17_XXX_XXX_1/results/tumor_tiggw_class.nii.gz 
+# If save folder is not empty, the segmentation of all images
+# will be saved the save_folder, the output name is like
+# Brats17_XXX_XXX_1.nii.gz
+save_folder      = 
+multi_prediction_postfix = test4
 
 [network1ax]
 net_type            = MSNet

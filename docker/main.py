@@ -2,8 +2,8 @@
 from __future__ import absolute_import, print_function
 import os
 import sys
+sys.path.append('.')
 import subprocess
-sys.path.append("/data/brats18/")
 from test import BratsTest
 from util.image_io.get_patient_names import get_brats18_test_names
 
