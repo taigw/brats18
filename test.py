@@ -195,8 +195,7 @@ class BratsTest:
                     imgs    = [x[:, :, :, 0], x[:, :, :, 1], x[:, :, :, 2], x[:, :, :, 3]]
                     weight  =  mask[:, :, :, 0]
                     t0 = time.time()
-                    predict = np.ones_like(weight)
-#                    predict = self.__inference_one_case(imgs, weight)
+                    predict = self.__inference_one_case(imgs, weight)
                     predict = np.reshape(predict, list(predict.shape) + [1])
                     input_dict = {'entry_name': name}
                     input_dict['entry_data'] = {'prediction': predict}
